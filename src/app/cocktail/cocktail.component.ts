@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { CocktailCardComponent } from '../cocktail-card/cocktail-card.component';
-import { NgFor } from '@angular/common';
+
 @Component({
   selector: 'app-cocktail',
-  imports: [CocktailCardComponent, NgFor],
+  imports: [CocktailCardComponent],
   templateUrl: './cocktail.component.html',
   styleUrl: './cocktail.component.css'
 })
