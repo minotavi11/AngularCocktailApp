@@ -1,24 +1,38 @@
 import { Component } from '@angular/core';
 import { CocktailCardComponent } from '../cocktail-card/cocktail-card.component';
+import { DataService } from '../data.service';
+import { OnInit } from '@angular/core';
+import { inject } from '@angular/core';
+import { CocktailNavigationComponent } from '../cocktail-navigation/cocktail-navigation.component';
+
 
 @Component({
   selector: 'app-cocktail',
-  imports: [CocktailCardComponent],
+  imports: [CocktailCardComponent, CocktailNavigationComponent],
   templateUrl: './cocktail.component.html',
   styleUrl: './cocktail.component.css'
 })
-export class CocktailComponent {
-  listOfCocktails = [
-    { name: "Mojito", image: "/mojito.jpg" },
-    { name: "Margarita", image: "/margarita.jpg" },
-    { name: "Cosmopolitan", image: "/alice-cocktail.jpg" },
-    { name: "Pina Colada", image: "/apello.jpg" },
-    { name: "Daiquiri", image: "/apple-berry-smoothie.jpg" },
-    { name: "Mai Tai", image: "/cuba-libre.jpg" },
-    { name: "Moscow Mule", image: "/dry-martini.jpg" },
-    { name: "Whiskey Sour", image: "/gin-and-tonic.jpg" },
-    { name: "Negroni", image: "/spritz.jpg" }
-  ];
+export class CocktailComponent implements OnInit {
+  dataService = inject(DataService);
+  title = 'All Cocktails';
+  showDescription = false;
+  allCocktails: any[] = [];
+  listOfCocktails : Array <any> = [];
 
 
+
+  onClick() {
+    this.showDescription = !this.showDescription;
+  }
+
+  // constructor() {
+  //   this.dataService.getCocktails().subscribe( cocktails => this.listOfCocktails = cocktails )
+  // }
+  
+  ngOnInit():void {
+    this.dataService.getCocktails().subscribe( cocktails => {this.listOfCocktails = cocktails; this.allCocktails = cocktails;}  )
+  }
+  onLetterSelected(letter : string) : void {
+    this.listOfCocktails = this.allCocktails.filter(cocktail => cocktail.name.startsWith(letter));
+  }
 }
