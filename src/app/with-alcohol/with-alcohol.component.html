@@ -3,6 +3,8 @@
     <div class="col-12 d-flex flex-column align-items-center gap-3">
       <span class="titre">{{ title }}</span>
       <button class="btn btn-secondary" (click)="onClick()">Toggle</button>
+      <app-cocktail-navigation (letterSelected)="onLetterSelected($event)" (searchPerformed)="onSearchPerformed($event)"></app-cocktail-navigation>
+
     </div>
   </div>
   <div class="row">

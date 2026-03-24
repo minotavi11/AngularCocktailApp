@@ -1,3 +1,12 @@
+<form (ngSubmit) = "submit()" [formGroup] = "searchForm" >
+
+<div>
+  <label> Get Drunk!</label>
+  <input [formControl] = "inputField">
+  <button type = "submit" [disabled]="searchForm.invalid" class="btn btn-secondary">Drink Up!</button>
+</div>
+
+</form>
 @for (letter of letters; track letter) {
-  <a (click)="select(letter)">{{ letter }}</a>
+  <a class="p-1 text-black" (click)="select(letter)">{{ letter }}</a>
 }

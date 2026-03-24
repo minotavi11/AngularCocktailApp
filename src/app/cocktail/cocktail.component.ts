@@ -6,6 +6,7 @@ import { inject } from '@angular/core';
 import { CocktailNavigationComponent } from '../cocktail-navigation/cocktail-navigation.component';
 
 
+
 @Component({
   selector: 'app-cocktail',
   imports: [CocktailCardComponent, CocktailNavigationComponent],
@@ -20,19 +21,17 @@ export class CocktailComponent implements OnInit {
   listOfCocktails : Array <any> = [];
 
 
-
   onClick() {
     this.showDescription = !this.showDescription;
   }
-
-  // constructor() {
-  //   this.dataService.getCocktails().subscribe( cocktails => this.listOfCocktails = cocktails )
-  // }
-  
   ngOnInit():void {
     this.dataService.getCocktails().subscribe( cocktails => {this.listOfCocktails = cocktails; this.allCocktails = cocktails;}  )
   }
   onLetterSelected(letter : string) : void {
     this.listOfCocktails = this.allCocktails.filter(cocktail => cocktail.name.startsWith(letter));
+  }
+  onSearchPerformed(term : string): void{  
+    this.listOfCocktails = this.allCocktails.filter(cocktail => cocktail.name.toLowerCase().includes(term.toLowerCase()));
+
   }
 }
