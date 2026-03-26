@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import {ReactiveFormsModule, UntypedFormGroup} from '@angular/forms';
+import {ReactiveFormsModule} from '@angular/forms';
 import { FormControl } from '@angular/forms';
 import { FormGroup } from '@angular/forms';
 import { Validators } from '@angular/forms';
@@ -38,8 +38,9 @@ export class CocktailNavigationComponent implements OnInit {
     this.searchForm = new FormGroup({
       input : this.inputField
     })
+    this.inputField.valueChanges.subscribe(val => console.log(val))
   }
-  submit( ) :void {
+  submit() :void {
     this.searchPerformed.emit(this.inputField.value)
   }
 

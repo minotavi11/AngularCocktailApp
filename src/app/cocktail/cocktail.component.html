@@ -18,6 +18,9 @@
         <span class="text-muted">No cocktails found.</span>
       </div>
     }
+    <app-add-cocktail-form
+    (cocktailAdded)="onCocktailAdded($event)"
+    ></app-add-cocktail-form>
   </div>
 </div>
 

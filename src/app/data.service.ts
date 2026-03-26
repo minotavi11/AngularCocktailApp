@@ -29,4 +29,9 @@ export class DataService {
       return of(this.cocktails.filter( el => ! el.alcohol ))
   }
 
+  addCocktail(newCocktail: any): void {
+    newCocktail.id = this.cocktails.length + 1
+    this.cocktails.push(newCocktail)
+  }
+
 }

@@ -1,0 +1,25 @@
+<form [formGroup]="addCocktailForm" (ngSubmit)="submit()" class="p-3 border rounded bg-light">
+  <div class="mb-2">
+    <label>Name</label>
+    <input formControlName="name" class="form-control" placeholder="e.g. Blue Lagoon">
+  </div>
+
+  <div class="mb-2">
+    <label>Description</label>
+    <textarea formControlName="description" class="form-control"></textarea>
+  </div>
+
+  <div class="mb-2">
+    <label>Image URL</label>
+    <input formControlName="image" class="form-control" placeholder="https://...">
+  </div>
+
+  <div class="form-check mb-3">
+    <input type="checkbox" formControlName="alcohol" class="form-check-input" id="alc">
+    <label class="form-check-label" for="alc">Alcoholic?</label>
+  </div>
+
+  <button type="submit" [disabled]="addCocktailForm.invalid" class="btn btn-success w-100">
+    Add to Menu
+  </button>
+</form>
